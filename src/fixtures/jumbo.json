@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "direction": "row",
+        "title": "Jumbo 1",
+        "image": "/images/misc/b1.jpg",
+        "alt": "b1"
+    },
+    {
+        "id": 2,
+        "direction": "row-reverse",
+        "title": "Jumbo 2",
+        "image": "/images/misc/b2.jpg",
+        "alt": "b2"
+    },
+    {
+        "id": 3,
+        "direction": "row",
+        "title": "Jumbo 3",
+        "image": "/images/misc/b3.jpg",
+        "alt": "b3"
+    }
+]
