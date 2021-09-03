@@ -5,12 +5,12 @@ import "firebase/auth";
 import { seedDatabase } from "../seed";
 
 const config = {
-	apiKey: "AIzaSyBxIbOxXDpZ6NmeBAKG5BPv8zcdcc6ERFE",
-	authDomain: "zonkil-wip.firebaseapp.com",
-	projectId: "zonkil-wip",
-	storageBucket: "zonkil-wip.appspot.com",
-	messagingSenderId: "1060411615711",
-	appId: "1:1060411615711:web:2d33f3b9ffad5a47733c6a"
+  apiKey: "AIzaSyApMCJs9PYFsU5BQGRhHkMSd27H8Z9z26o",
+  authDomain: "netflix-4f6df.firebaseapp.com",
+  projectId: "netflix-4f6df",
+  storageBucket: "netflix-4f6df.appspot.com",
+  messagingSenderId: "123689382159",
+  appId: "1:123689382159:web:141fea67806e592f7f4e7a"
 };
 
 const firebase = Firebase.initializeApp(config);
