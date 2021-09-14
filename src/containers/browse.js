@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import Fuse from "fuse.js";
 import { SelectProfileContainer } from "./profiles";
+import { FooterContainer } from "./footer";
 import { FirebaseContext } from "../context/firebase";
-import { Card, Header, Loading } from "../components";
+import { Card, Header, Loading, Player } from "../components";
 import * as ROUTES from "../constants/routes";
 import logo from "../logo.svg";
 //eslint-disable-next-line no-unused-vars
@@ -27,6 +29,19 @@ export function BrowseContainer({ slides }) {
     setSlideRows(slides[category]);
   }, [slides, category]);
 
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ["data.description", "data.title", "data.genre"]
+    });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [searchTerm]);
+
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user.photoURL} />
@@ -40,7 +55,7 @@ export function BrowseContainer({ slides }) {
               active={category === "series" ? "true" : "false"}
               onClick={()=>setCategory("series")}
             >
-                Series
+              Series
             </Header.TextLink>
             <Header.TextLink
               active={category === "films" ? "true" : "false"}
@@ -97,11 +112,15 @@ export function BrowseContainer({ slides }) {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              <p>Hello</p>
+              <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player>
             </Card.Feature>
           </Card>
         ))}
       </Card.Group>
+      <FooterContainer />
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile}/>
